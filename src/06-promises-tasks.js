@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 /* ************************************************************************************************
  *                                                                                                *
  * Please read the following tutorial before implementing tasks:                                   *
@@ -27,8 +28,16 @@
  *      .catch((error) => console.log(error.message)) // 'Error: Wrong parameter is passed!
  *                                                    //  Ask her again.';
  */
-function willYouMarryMe(/* isPositiveAnswer */) {
-  throw new Error('Not implemented');
+function willYouMarryMe(isPositiveAnswer) {
+  return new Promise((resolve, reject) => {
+    if (typeof isPositiveAnswer !== 'boolean') {
+      reject(new Error('Wrong parameter is passed! Ask her again.'));
+    } else if (isPositiveAnswer) {
+      resolve('Hooray!!! She said "Yes"!');
+    } else if (!isPositiveAnswer) {
+      resolve('Oh no, she said "No".');
+    }
+  });
 }
 
 /**
@@ -46,8 +55,8 @@ function willYouMarryMe(/* isPositiveAnswer */) {
  *    })
  *
  */
-function processAllPromises(/* array */) {
-  throw new Error('Not implemented');
+function processAllPromises(array) {
+  return Promise.all(array);
 }
 
 /**
@@ -69,8 +78,12 @@ function processAllPromises(/* array */) {
  *    })
  *
  */
-function getFastestPromise(/* array */) {
-  throw new Error('Not implemented');
+function getFastestPromise(array) {
+  return new Promise((resolve, reject) => {
+    Promise.race(array)
+      .then((value) => resolve(value))
+      .catch((e) => reject(e));
+  });
 }
 
 /**
@@ -90,8 +103,28 @@ function getFastestPromise(/* array */) {
  *    });
  *
  */
-function chainPromises(/* array, action */) {
-  throw new Error('Not implemented');
+function chainPromises(array, action) {
+  return new Promise((resolve) => {
+    let result;
+    let counter = 0;
+    array.forEach((promise) => {
+      promise.then((value) => {
+        if (result === undefined) {
+          result = value;
+          counter++;
+        } else {
+          result = action(result, value);
+          counter++;
+        }
+        if (counter === array.length) {
+          resolve(result);
+        }
+      }).catch(() => {
+        counter++;
+        if (counter === array.length) resolve(result);
+      });
+    });
+  });
 }
 
 module.exports = {
