@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* ************************************************************************************************
  *                                                                                                *
  * Please read the following tutorial before implementing tasks:                                   *
@@ -138,6 +139,87 @@ const cssSelectorBuilder = {
     throw new Error('Not implemented');
   },
 };
+
+// const cssSelectorBuilder = {
+
+//   string: '',
+//   selectorParts: [],
+//   hasElement: false,
+//   hasId: false,
+//   hasPseudoElement: false,
+
+//   copy() {
+//     const clone = { ...this };
+//     return clone;
+//   },
+
+//   element(value) {
+//     if (this.hasElement === true) throw new Error('Element, id and pseudo-element should not occur more then one time inside the selector');
+//     this.selectorParts.push('element');
+//     const copy = this.copy();
+//     copy.string += value;
+//     copy.hasElement = true;
+//     return copy;
+//   },
+
+//   id(value) {
+//     if (this.hasId === true) throw new Error('Element, id and pseudo-element should not occur more then one time inside the selector');
+//     this.selectorParts.push('id');
+//     const copy = this.copy();
+//     copy.string += `#${value}`;
+//     copy.hasId = true;
+//     return copy;
+//   },
+
+//   class(value) {
+//     this.selectorParts.push('class');
+//     const copy = this.copy();
+//     copy.string += `.${value}`;
+//     return copy;
+//   },
+
+//   attr(value) {
+//     this.selectorParts.push('attribute');
+//     const copy = this.copy();
+//     copy.string += `[${value}]`;
+//     return copy;
+//   },
+
+//   pseudoClass(value) {
+//     this.selectorParts.push('pseudo-class');
+//     const copy = this.copy();
+//     copy.string += `:${value}`;
+//     return copy;
+//   },
+
+//   pseudoElement(value) {
+//     this.selectorParts.push('pseudo-element');
+//     if (this.hasPseudoElement === true) throw new Error('Element, id and pseudo-element should not occur more then one time inside the selector');
+//     const copy = this.copy();
+//     copy.string += `::${value}`;
+//     copy.hasPseudoElement = true;
+//     return copy;
+//   },
+
+//   combine(selector1, combinator, selector2) {
+//     const copy = selector1.copy();
+//     copy.string = `${selector1.stringify()} ${combinator} ${selector2.stringify()}`;
+//     return copy;
+//   },
+
+//   stringify() {
+//     const newArr = this.selectorParts;
+//     if (newArr.indexOf('element') !== -1 && newArr[0] !== 'element') throw new Error('Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element1');
+//     if ((newArr.indexOf('element') > newArr.indexOf('id') && newArr.indexOf('id') !== -1) || (newArr.indexOf('element') > newArr.indexOf('class') && newArr.indexOf('class') !== -1) || (newArr.indexOf('element') > newArr.indexOf('attribute') && newArr.indexOf('attribute') !== -1) || (newArr.indexOf('element') > newArr.indexOf('pseudo-class') && newArr.indexOf('pseudo-class') !== -1) || (newArr.indexOf('element') > newArr.indexOf('pseudo-element') && newArr.indexOf('pseudo-element') !== -1)) throw new Error('Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element2');
+//     if ((newArr.indexOf('id') > newArr.indexOf('class') && newArr.indexOf('class') !== -1) || (newArr.indexOf('id') > newArr.indexOf('attribute') && newArr.indexOf('attribute') !== -1) || (newArr.indexOf('id') > newArr.indexOf('pseudo-class') && newArr.indexOf('pseudo-class') !== -1) || (newArr.indexOf('id') > newArr.indexOf('pseudo-element') && newArr.indexOf('pseudo-element') !== -1)) throw new Error('Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element3');
+//     if ((newArr.indexOf('class') > newArr.indexOf('attribute') && newArr.indexOf('attribute') !== -1) || (newArr.indexOf('class') > newArr.indexOf('pseudo-class') && newArr.indexOf('pseudo-class') !== -1) || (newArr.indexOf('class') > newArr.indexOf('pseudo-element') && newArr.indexOf('pseudo-element') !== -1)) throw new Error('Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element4');
+//     if ((newArr.indexOf('attribute') > newArr.indexOf('pseudo-class') && newArr.indexOf('pseudo-class') !== -1) || (newArr.indexOf('attribute') > newArr.indexOf('pseudo-element') && newArr.indexOf('pseudo-element') !== -1)) throw new Error('Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element5');
+//     if ((newArr.indexOf('pseudo-class') > newArr.indexOf('pseudo-element') && newArr.indexOf('pseudo-element') !== -1)) throw new Error('Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element6');
+//     if ((newArr.indexOf('pseudo-element') < newArr.indexOf('pseudo-class') && newArr.indexOf('pseudo-class') !== -1) || (newArr.indexOf('pseudo-element') < newArr.indexOf('attribute') && newArr.indexOf('attribute') !== -1) || (newArr.indexOf('pseudo-element') < newArr.indexOf('class') && newArr.indexOf('class') !== -1) || (newArr.indexOf('pseudo-element') < newArr.indexOf('id') && newArr.indexOf('id') !== -1) || (newArr.indexOf('pseudo-element') < newArr.indexOf('element') && newArr.indexOf('element') !== -1)) throw new Error('Selector parts should be arranged in the following order: element, id, class, attribute, pseudo-class, pseudo-element7');
+
+//     return this.string;
+//   },
+// };
 
 module.exports = {
   Rectangle,

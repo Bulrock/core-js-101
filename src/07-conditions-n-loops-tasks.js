@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-plusplus */
 /* eslint-disable no-duplicate-case */
 /* eslint-disable default-case */
 /* eslint-disable indent */
@@ -269,7 +271,30 @@ function reverseInteger(num) {
  *   5436468789016589 => false
  *   4916123456789012 => false
  */
-function isCreditCardNumber(/* ccn */) {
+//  function isCreditCardNumber(ccn) {
+//   const ccnToStr = String(ccn);
+//   const ccnLastNumber = Number(String(ccn).slice(-1));
+//   const checkedStr = ccnToStr.slice(0, -1).split('');
+//   const sum = checkedStr.reduceRight((previous, current, currentIndex) => {
+//     if ((Math.abs(currentIndex - checkedStr.length + 1) % 2 === 0)
+//     || (Math.abs(currentIndex - checkedStr.length + 1) === 0)) {
+//       let temp = current * 2;
+//       if (temp >= 10) {
+//         temp -= 9;
+//       }
+//       previous += Number(temp);
+//       return previous;
+//     }
+//       previous += Number(current);
+
+//     return previous;
+//   }, 0);
+
+//   const modTen = parseInt(sum / 10, 10);
+//   const controlNum = (modTen + 1) * 10 - sum;
+//   return ccnLastNumber === controlNum;
+// }
+ function isCreditCardNumber(/* ccn */) {
   throw new Error('Not implemented');
 }
 
@@ -386,8 +411,21 @@ function toNaryString(num, n) {
  *   ['/web/assets/style.css', '/.bin/mocha',  '/read.me'] => '/'
  *   ['/web/favicon.ico', '/web-scripts/dump', '/verbalizer/logs'] => '/'
  */
-function getCommonDirectoryPath(/* pathes */) {
-  throw new Error('Not implemented');
+function getCommonDirectoryPath(pathes) {
+  const arrPaths = [];
+  pathes.forEach((path) => arrPaths.push(path.split('/')));
+  arrPaths.sort((a, b) => b.length - a.length);
+  let result = '';
+  for (let i = 0; i < arrPaths[0].length; i++) {
+    for (let j = 1; j < arrPaths.length; j++) {
+      if (arrPaths[0][i] === arrPaths[j][i] && j === arrPaths.length - 1) {
+        result += `${arrPaths[0][i]}/`;
+      } else if (arrPaths[0][i] !== arrPaths[j][i]) {
+        return result;
+      }
+    }
+  }
+  return result;
 }
 
 /**
@@ -408,8 +446,24 @@ function getCommonDirectoryPath(/* pathes */) {
  *                         [ 6 ]]
  *
  */
-function getMatrixProduct(/* m1, m2 */) {
-  throw new Error('Not implemented');
+
+function getMatrixProduct(m1, m2) {
+  const rowsM1 = m1.length;
+  const rowsM2 = m2.length;
+  const columnsM2 = m2[0].length;
+  const result = Array(rowsM1).fill(0).map(() => new Array(columnsM2).fill(0));
+  let i = 0;
+  let j = 0;
+  let k = 0;
+  for (i = 0; i < rowsM1; i++) {
+    for (j = 0; j < columnsM2; j++) {
+      result[i][j] = 0;
+        for (k = 0; k < rowsM2; k++) {
+          result[i][j] += m1[i][k] * m2[k][j];
+        }
+    }
+  }
+  return result;
 }
 
 /**
