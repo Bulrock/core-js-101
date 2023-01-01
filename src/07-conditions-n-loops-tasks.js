@@ -271,32 +271,33 @@ function reverseInteger(num) {
  *   5436468789016589 => false
  *   4916123456789012 => false
  */
-//  function isCreditCardNumber(ccn) {
-//   const ccnToStr = String(ccn);
-//   const ccnLastNumber = Number(String(ccn).slice(-1));
-//   const checkedStr = ccnToStr.slice(0, -1).split('');
-//   const sum = checkedStr.reduceRight((previous, current, currentIndex) => {
-//     if ((Math.abs(currentIndex - checkedStr.length + 1) % 2 === 0)
-//     || (Math.abs(currentIndex - checkedStr.length + 1) === 0)) {
-//       let temp = current * 2;
-//       if (temp >= 10) {
-//         temp -= 9;
-//       }
-//       previous += Number(temp);
-//       return previous;
-//     }
-//       previous += Number(current);
+ function isCreditCardNumber(ccn) {
+  const ccnToStr = String(ccn);
+  const ccnLastNumber = Number(String(ccn).slice(-1));
+  const checkedStr = ccnToStr.slice(0, -1).split('');
+  const sum = checkedStr.reduceRight((previous, current, currentIndex) => {
+    if ((Math.abs(currentIndex - checkedStr.length + 1) % 2 === 0)
+    || (Math.abs(currentIndex - checkedStr.length + 1) === 0)) {
+      let temp = current * 2;
+      if (temp >= 10) {
+        temp -= 9;
+      }
+      previous += Number(temp);
+      return previous;
+    }
+      previous += Number(current);
 
-//     return previous;
-//   }, 0);
+    return previous;
+  }, 0);
 
-//   const modTen = parseInt(sum / 10, 10);
-//   const controlNum = (modTen + 1) * 10 - sum;
-//   return ccnLastNumber === controlNum;
-// }
- function isCreditCardNumber(/* ccn */) {
-  throw new Error('Not implemented');
+  const modTen = parseInt(sum / 10, 10);
+  const controlNum = (modTen + 1) * 10 - sum;
+  if (ccnLastNumber === controlNum || (controlNum === 10 && ccnLastNumber === 0)) return true;
+  return false;
 }
+//  function isCreditCardNumber(/* ccn */) {
+//   throw new Error('Not implemented');
+// }
 
 /**
  * Returns the digital root of integer:
